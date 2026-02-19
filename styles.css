@@ -1,0 +1,246 @@
+/* GENERAL PAGE STYLE */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: rgb(23, 23, 23);
+    background-image: url("kuvat/widewebsitebackg.png");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+}
+
+/* HEADER */
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(23, 23, 23);
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 120px;
+    width: 180px;
+    max-width: 600px;
+    background: transparent;
+}
+
+/* TOP NAVIGATION */
+.topbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 500px;
+}
+
+.topbar a {
+    color: aliceblue;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.topbar a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN CONTENT */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 16px auto 16px;
+}
+
+figure {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+figure img {
+    width: 250px;
+    height: auto;
+}
+
+section {
+    width: 100%;
+    height: auto;
+}
+
+/* AI INFO BOX */
+.ai {
+    background-color: rgb(0, 0, 0);
+    color: rgb(62, 122, 175);
+    padding: 2px 20px;
+}
+
+.ai h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* GENERAL NAVIGATION */
+nav li {
+    display: inline;
+    margin-right: 16px;
+}
+
+nav ul {
+    padding-left: 0%;
+}
+
+nav a,
+nav a:visited,
+nav a:active {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+p {
+    padding-bottom: 16px;
+}
+
+nav {
+    background-color: rgb(23, 23, 23);
+    padding: 8px 16px;
+}
+
+/* FOOTER */
+footer p {
+    padding-top: 16px;
+}
+
+.bottom {
+    width: 100%;
+    background-color: rgb(23, 23, 23);
+    padding: 60px 20px;
+    box-sizing: border-box;
+    margin-top: 40px;
+}
+
+.bottom ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.bottom a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 60px;
+}
+
+.bottom a:hover {
+    text-decoration: underline;
+}
+
+/* REVIEW FORM BOX */
+.formi {
+    margin-top: 40px;
+}
+
+.box {
+    background-color: rgb(0, 0, 0);
+    color: rgb(62, 122, 175);
+    padding: 20px;
+    border-radius: 4px;
+    width: 400px;
+}
+
+.box input,
+.box select,
+.box textarea {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#reviews div {
+    background: rgba(0, 0, 0, 0.7);
+    color: rgb(62, 122, 175);
+    border: 1px solid rgb(62, 122, 175);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+
+    body {
+        background-size: cover;
+        background-position: center;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        width: 140px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .topbar ul {
+        margin-right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .topbar a {
+        margin-left: 0;
+        font-size: 16px;
+    }
+
+    .container {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    figure {
+        float: none;
+        margin: 0 auto 20px auto;
+        text-align: center;
+    }
+
+    figure img {
+        width: 80%;
+        max-width: 250px;
+    }
+
+    .ai {
+        padding: 10px;
+    }
+
+    .formi {
+        margin-top: 40px;
+    }
+
+    .box {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .bottom ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bottom a {
+        padding-left: 0;
+        text-align: center;
+        display: block;
+    }
+}

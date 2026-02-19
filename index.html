@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tehtava</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- style tehty (mahdollisesti vaihdetaan vaan CSSään) -->
+    <style>
+        .box { border: 1px solid #ccc; padding: 20px; width: 400px; }
+        input, select, textarea { width: 100%; }
+        button { padding: 8px 16px; margin-top: 5px; }
+        #reviews div { border: 1px solid #ccc; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="index.html">
+        <img src="kuvat/Image.png" alt="optizone market logo" class="logo">
+    </a>
+
+    <nav class="topbar">
+        <ul>
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="market.html">Market</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="ruotsi.html">Swedish</a></li>
+            <li><a href="#">Legal</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div class="article-header">
+        <h1>POWERED BY OPTI AI</h1>
+        <p class="date">27.5.2025</p>
+        <p class="author">OptiZone Market .LTD</p>
+    </div>
+
+    <article>
+        <h2>Information</h2>
+
+        <figure>
+            <img src="kuvat/OptiAI.png" alt="OptiAI logo">
+        </figure>
+
+        <section>
+            <div class="ai">
+                <h2>OPTI AI: Revolution in security and information all in one.</h2>
+
+                <p>
+                    OPTI AI will be as said. Revolution in the field of AI. OPTI AI has three priorities which include security, market support and correct information.
+                    OPTI AI will learn only from those who give it a permission to do so, which means you dont have to give any information If you so choose.
+                    We also value your opinions and we plan to have a customer feedback program. Please report any bugs or errors to our knowledge!
+                </p>
+            </div>
+
+            <!--Lorem ipsumia (täytetesti)-->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </section>
+
+        <footer>
+            <p>
+                For more, visit
+                <a href="https://www.lipsum.com/">&copy; Lorem Ipsum</a>.
+            </p>
+        </footer>
+    </article>
+
+    <!--Review formi (etusivulle) -->
+    <article class="formi">
+        <figure>
+            <img src="kuvat/simplelogo.png" alt="SimpleReview logo">
+        </figure>
+
+        <div class="box">
+            <h2>Review Form</h2>
+
+            <form id="reviewForm">
+                Name:<br>
+                <input type="text" name="name" required><br><br>
+
+                Rating:<br>
+                <select name="rating">
+                    <option>5 stars</option>
+                    <option>4 stars</option>
+                    <option>3 stars</option>
+                    <option>2 stars</option>
+                    <option>1 star</option>
+                </select><br><br>
+
+                Review:<br>
+                <textarea name="review" rows="4" cols="30" required></textarea><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <p id="status"></p>
+        </div>
+
+        <h2>Reviews</h2>
+        <div id="reviews"></div>
+    </article>
+
+</div>
+
+<footer class="bottom">
+    <nav>
+        <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Linkedin</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">X</a></li>
+            <li><a href="#">Reddit</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">Snapchat</a></li>
+        </ul>
+    </nav>
+</footer>
+
+<!-- Ajax scripti -->
+<script>
+const form = document.getElementById("reviewForm");
+const status = document.getElementById("status");
+const reviews = document.getElementById("reviews");
+
+// AJAX lähetys tässä (tietokantaan)
+form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    fetch("tallenna_review.php", {
+        method: "POST",
+        body: new FormData(form)
+    })
+    .then(r => r.text())
+    .then(msg => {
+        status.innerHTML = msg;
+        form.reset();
+        hae(); // refresh list
+    })
+    .catch(err => {
+        status.innerHTML = "❌ Error sending review.";
+    });
+});
+
+// Reviewien haku ja näyttö
+function hae() {
+    fetch("hae_reviews.php")
+    .then(r => r.json())
+    .then(data => {
+        reviews.innerHTML = "";
+        data.forEach(r => {
+            reviews.innerHTML += `
+                <div>
+                    <b>${r.name}</b> — ⭐ ${r.rating}<br>
+                    ${r.review}<br>
+                    <small>${r.time}</small>
+                </div>
+            `;
+        });
+    });
+}
+
+// Automaattinen päivitys (3sec välein)
+setInterval(hae, 3000);
+hae();
+</script>
+
+</body>
+</html>
